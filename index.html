@@ -3,21 +3,1415 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thomas Ibrahim | Portfolio</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Aerospace Engineer Portfolio | John Carter</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #0d3b66;
+            --secondary: #1d6fa5;
+            --accent: #3a9bd9;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gray: #6c757d;
+            --light-gray: #e9ecef;
+            --transition: all 0.3s ease;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: #f5f7fa;
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header & Navigation */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            padding: 15px 0;
+            transition: var(--transition);
+        }
+
+        header.scrolled {
+            padding: 10px 0;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            color: var(--primary);
+            font-size: 24px;
+        }
+
+        .logo-text {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
+            letter-spacing: 1px;
+        }
+
+        .logo-text span {
+            color: var(--accent);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 600;
+            font-size: 16px;
+            transition: var(--transition);
+            padding: 5px 0;
+            position: relative;
+        }
+
+        nav a:hover {
+            color: var(--accent);
+        }
+
+        nav a.active {
+            color: var(--primary);
+        }
+
+        nav a.active:after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: var(--accent);
+            border-radius: 3px;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: var(--primary);
+            cursor: pointer;
+        }
+
+        /* Main Content - All sections on one page */
+        main {
+            margin-top: 80px;
+        }
+
+        /* Sections */
+        .section {
+            padding: 100px 0;
+            min-height: auto;
+        }
+
+        .section:nth-child(even) {
+            background-color: rgba(248, 249, 250, 0.7);
+        }
+
+        /* Intro Section */
+        #intro {
+            display: flex;
+            align-items: center;
+            min-height: calc(100vh - 80px);
+            padding: 40px 0;
+        }
+
+        .intro-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .intro-text h1 {
+            font-size: 3.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            line-height: 1.2;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .intro-text h1 span {
+            color: var(--accent);
+        }
+
+        .intro-text p {
+            font-size: 1.2rem;
+            color: var(--gray);
+            margin-bottom: 30px;
+            max-width: 500px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease 0.2s forwards;
+        }
+
+        .intro-photo {
+            text-align: right;
+        }
+
+        .profile-photo {
+            width: 350px;
+            height: 350px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 8px solid white;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease 0.4s forwards;
+        }
+
+        .profile-photo:hover {
+            transform: scale(1.03);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .intro-buttons {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease 0.6s forwards;
+        }
+
+        /* About Section */
+        #about .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--accent);
+            border-radius: 2px;
+        }
+
+        .section-title p {
+            color: var(--gray);
+            font-size: 1.1rem;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: start;
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            color: var(--dark);
+        }
+
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .skill-tag {
+            background-color: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-weight: 600;
+            color: var(--primary);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+            border: 1px solid var(--light-gray);
+        }
+
+        .skill-tag:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .education-item {
+            background-color: white;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+        }
+
+        .education-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .project-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .project-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .project-info {
+            padding: 25px;
+        }
+
+        .project-info h3 {
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-size: 1.5rem;
+        }
+
+        .project-info p {
+            color: var(--gray);
+            margin-bottom: 20px;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .project-tag {
+            background-color: var(--light-gray);
+            color: var(--primary);
+            padding: 5px 12px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        /* Project Modal */
+        .project-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .project-modal.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-content {
+            background-color: white;
+            border-radius: 10px;
+            max-width: 900px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            animation: modalFadeIn 0.4s ease;
+        }
+
+        @keyframes modalFadeIn {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 20px;
+            cursor: pointer;
+            z-index: 10;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: var(--transition);
+        }
+
+        .modal-close:hover {
+            background-color: var(--accent);
+            transform: rotate(90deg);
+        }
+
+        .modal-img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+        }
+
+        .modal-body {
+            padding: 40px;
+        }
+
+        .modal-body h2 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-size: 2.2rem;
+        }
+
+        .modal-body p {
+            margin-bottom: 25px;
+            font-size: 1.1rem;
+        }
+
+        .modal-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .modal-gallery img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .modal-gallery img:hover {
+            transform: scale(1.05);
+        }
+
+        /* Experience Section */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 40px auto 0;
+        }
+
+        .timeline:before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background-color: var(--accent);
+        }
+
+        .timeline-item {
+            display: flex;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .timeline-item:nth-child(odd) {
+            justify-content: flex-end;
+            padding-right: calc(50% + 30px);
+        }
+
+        .timeline-item:nth-child(even) {
+            justify-content: flex-start;
+            padding-left: calc(50% + 30px);
+        }
+
+        .timeline-content {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            width: 100%;
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .timeline-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .timeline-content:before {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: var(--accent);
+            border-radius: 50%;
+            top: 30px;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content:before {
+            left: -40px;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content:before {
+            right: -40px;
+        }
+
+        .timeline-date {
+            color: var(--accent);
+            font-weight: 700;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .timeline-content h3 {
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-size: 1.5rem;
+        }
+
+        /* Resume Section */
+        .resume-container {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .resume-sidebar {
+            background-color: var(--primary);
+            color: white;
+            padding: 40px 30px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .resume-main {
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        .contact-info {
+            margin-bottom: 40px;
+        }
+
+        .contact-info h3 {
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+            color: var(--accent);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            gap: 15px;
+        }
+
+        .contact-item i {
+            color: var(--accent);
+            width: 20px;
+        }
+
+        .download-btn {
+            display: inline-block;
+            background-color: var(--accent);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            text-align: center;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+
+        .download-btn:hover {
+            background-color: #2a8bc9;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .resume-section {
+            margin-bottom: 40px;
+        }
+
+        .resume-section h3 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--light-gray);
+            font-size: 1.6rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary);
+            color: white;
+            padding: 60px 0 40px;
+            margin-top: 40px;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 20px;
+        }
+
+        .social-icons a {
+            color: white;
+            font-size: 20px;
+            transition: var(--transition);
+        }
+
+        .social-icons a:hover {
+            color: var(--accent);
+            transform: translateY(-5px);
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            width: 100%;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Back to top button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background-color: var(--accent);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            text-decoration: none;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: var(--transition);
+            opacity: 0;
+            visibility: hidden;
+            z-index: 999;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background-color: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .intro-content, .about-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .intro-photo {
+                text-align: center;
+            }
+
+            .profile-photo {
+                width: 300px;
+                height: 300px;
+            }
+
+            .resume-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .mobile-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: white;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+                padding: 20px;
+                flex-direction: column;
+                gap: 15px;
+                z-index: 1001;
+            }
+
+            .mobile-menu.active {
+                display: flex;
+            }
+
+            .mobile-menu a {
+                padding: 10px 0;
+                border-bottom: 1px solid var(--light-gray);
+            }
+
+            .timeline:before {
+                left: 30px;
+            }
+
+            .timeline-item:nth-child(odd),
+            .timeline-item:nth-child(even) {
+                justify-content: flex-start;
+                padding-left: 60px;
+                padding-right: 0;
+            }
+
+            .timeline-item:nth-child(odd) .timeline-content:before,
+            .timeline-item:nth-child(even) .timeline-content:before {
+                left: -40px;
+            }
+
+            .intro-text h1 {
+                font-size: 2.5rem;
+            }
+
+            .modal-body {
+                padding: 20px;
+            }
+
+            .modal-img {
+                height: 250px;
+            }
+
+            .section {
+                padding: 80px 0;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .intro-text h1 {
+                font-size: 2.2rem;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
 </head>
 <body>
-
-    <!-- Home / Intro Section -->
-    <section class="home">
-        <div class="intro-text">
-            <h1>Thomas Ibrahim</h1>
-            <p>Portfolio</p>
+    <!-- Header -->
+    <header id="header">
+        <div class="container header-container">
+            <div class="logo">
+                <i class="fas fa-rocket logo-icon"></i>
+                <div class="logo-text">Aero<span>Portfolio</span></div>
+            </div>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <nav>
+                <ul>
+                    <li><a href="#intro" class="nav-link active">Intro</a></li>
+                    <li><a href="#about" class="nav-link">About</a></li>
+                    <li><a href="#projects" class="nav-link">Projects</a></li>
+                    <li><a href="#experience" class="nav-link">Experience</a></li>
+                    <li><a href="#resume" class="nav-link">Resume</a></li>
+                </ul>
+            </nav>
+            
+            <div class="mobile-menu" id="mobileMenu">
+                <a href="#intro" class="nav-link active">Intro</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#projects" class="nav-link">Projects</a>
+                <a href="#experience" class="nav-link">Experience</a>
+                <a href="#resume" class="nav-link">Resume</a>
+            </div>
         </div>
-        <div class="intro-image">
-            <img src="profilejpg.jpg" alt="Thomas Ibrahim">
-        </div>
-    </section>
+    </header>
 
+    <!-- Main Content - All on one page -->
+    <main>
+        <!-- Intro Section -->
+        <section id="intro" class="section">
+            <div class="container">
+                <div class="intro-content">
+                    <div class="intro-text">
+                        <h1>John Carter<br><span>Aerospace Engineer</span></h1>
+                        <p>Specializing in aerodynamics, propulsion systems, and spacecraft design. With over 8 years of experience in the aerospace industry, I combine technical expertise with innovative problem-solving to advance the future of flight and space exploration.</p>
+                        <div class="intro-buttons">
+                            <button class="download-btn" id="contactBtn">Contact Me</button>
+                            <a href="#projects" class="download-btn" style="background-color: var(--primary); margin-left: 15px;">
+                                <i class="fas fa-rocket"></i> View Projects
+                            </a>
+                        </div>
+                    </div>
+                    <div class="intro-photo">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="John Carter - Aerospace Engineer" class="profile-photo">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="section">
+            <div class="container">
+                <div class="section-title">
+                    <h2>About Me</h2>
+                    <p>My background, education, and skills</p>
+                </div>
+                
+                <div class="about-content">
+                    <div class="about-text">
+                        <p>I'm a passionate Aerospace Engineer with a Master's degree in Aeronautics and Astronautics from Stanford University. My career has been focused on advancing aerospace technology through innovative design and rigorous analysis.</p>
+                        <p>I've worked on a variety of projects ranging from commercial aircraft efficiency improvements to cutting-edge spacecraft propulsion systems. My approach combines traditional engineering principles with modern computational methods.</p>
+                        <p>When I'm not designing the next generation of aerospace technology, I enjoy mentoring young engineers, writing technical papers, and flying drones to capture unique aerial perspectives.</p>
+                        
+                        <div class="skills-list">
+                            <div class="skill-tag">Aerodynamics</div>
+                            <div class="skill-tag">CFD Analysis</div>
+                            <div class="skill-tag">Propulsion Systems</div>
+                            <div class="skill-tag">Structural Analysis</div>
+                            <div class="skill-tag">MATLAB/Simulink</div>
+                            <div class="skill-tag">CAD Design</div>
+                            <div class="skill-tag">Systems Engineering</div>
+                            <div class="skill-tag">Project Management</div>
+                        </div>
+                    </div>
+                    
+                    <div class="education">
+                        <div class="education-item">
+                            <h3>Stanford University</h3>
+                            <p class="education-degree">M.S. Aeronautics and Astronautics</p>
+                            <p class="education-years">2013 - 2015</p>
+                            <p>Focus on advanced propulsion systems and computational fluid dynamics.</p>
+                        </div>
+                        
+                        <div class="education-item">
+                            <h3>MIT</h3>
+                            <p class="education-degree">B.S. Aerospace Engineering</p>
+                            <p class="education-years">2009 - 2013</p>
+                            <p>Graduated magna cum laude with focus on aircraft design and structures.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="section">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Projects</h2>
+                    <p>My aerospace engineering work and research</p>
+                </div>
+                
+                <div class="projects-grid" id="projectsGrid">
+                    <!-- Projects will be loaded dynamically via JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section id="experience" class="section">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Experience</h2>
+                    <p>My professional journey in aerospace engineering</p>
+                </div>
+                
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="timeline-date">2020 - Present</div>
+                            <h3>Senior Aerospace Engineer</h3>
+                            <h4>SpaceX, Hawthorne, CA</h4>
+                            <p>Lead engineer on Starship thermal protection system redesign. Managed a team of 12 engineers to improve heat shield efficiency by 23%.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="timeline-date">2017 - 2020</div>
+                            <h3>Aerospace Engineer</h3>
+                            <h4>NASA Jet Propulsion Laboratory, Pasadena, CA</h4>
+                            <p>Developed propulsion systems for Mars 2020 Perseverance rover. Contributed to aerodynamic analysis for Mars helicopter Ingenuity.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="timeline-date">2015 - 2017</div>
+                            <h3>Aerodynamics Engineer</h3>
+                            <h4>Boeing Commercial Airplanes, Seattle, WA</h4>
+                            <p>Performed CFD analysis on 787 Dreamliner wing design improvements. Contributed to fuel efficiency enhancements of 4%.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="timeline-date">Summer 2014</div>
+                            <h3>Aerospace Engineering Intern</h3>
+                            <h4>Lockheed Martin, Fort Worth, TX</h4>
+                            <p>Assisted in structural analysis of F-35 Lightning II components. Developed MATLAB scripts for automated stress testing.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Resume Section -->
+        <section id="resume" class="section">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Resume</h2>
+                    <p>Download my complete resume for more details</p>
+                </div>
+                
+                <div class="resume-container">
+                    <div class="resume-sidebar">
+                        <div class="contact-info">
+                            <h3>Contact Info</h3>
+                            <div class="contact-item">
+                                <i class="fas fa-envelope"></i>
+                                <span>john.carter@email.com</span>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fas fa-phone"></i>
+                                <span>(555) 123-4567</span>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Los Angeles, CA</span>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fab fa-linkedin"></i>
+                                <span>linkedin.com/in/johncarter</span>
+                            </div>
+                        </div>
+                        
+                        <div class="skills">
+                            <h3>Technical Skills</h3>
+                            <ul>
+                                <li>Computational Fluid Dynamics</li>
+                                <li>Finite Element Analysis</li>
+                                <li>Aircraft/Spaceraft Design</li>
+                                <li>MATLAB & Simulink</li>
+                                <li>Python for Engineering</li>
+                                <li>CATIA & SolidWorks</li>
+                                <li>ANSYS Fluent</li>
+                                <li>Project Management</li>
+                            </ul>
+                        </div>
+                        
+                        <button class="download-btn" id="downloadResume" style="width: 100%;">
+                            <i class="fas fa-download"></i> Download Resume (PDF)
+                        </button>
+                    </div>
+                    
+                    <div class="resume-main">
+                        <div class="resume-section">
+                            <h3>Professional Experience</h3>
+                            <p><strong>Senior Aerospace Engineer</strong> | SpaceX | 2020-Present</p>
+                            <p>Leading thermal protection system design for next-generation spacecraft. Managing multidisciplinary engineering teams.</p>
+                            
+                            <p><strong>Aerospace Engineer</strong> | NASA JPL | 2017-2020</p>
+                            <p>Developed propulsion and aerodynamic systems for Mars exploration missions. Published 5 technical papers.</p>
+                            
+                            <p><strong>Aerodynamics Engineer</strong> | Boeing | 2015-2017</p>
+                            <p>CFD analysis and wing design optimization for commercial aircraft. Improved fuel efficiency on 787 program.</p>
+                        </div>
+                        
+                        <div class="resume-section">
+                            <h3>Education</h3>
+                            <p><strong>M.S. Aeronautics & Astronautics</strong> | Stanford University | 2013-2015</p>
+                            <p>GPA: 3.9/4.0 | Thesis: "Advanced Propulsion Systems for Mars Ascent Vehicles"</p>
+                            
+                            <p><strong>B.S. Aerospace Engineering</strong> | MIT | 2009-2013</p>
+                            <p>Graduated magna cum laude | Minor in Mathematics</p>
+                        </div>
+                        
+                        <div class="resume-section">
+                            <h3>Certifications</h3>
+                            <p>• Professional Engineer (PE) License - Mechanical Engineering</p>
+                            <p>• Project Management Professional (PMP)</p>
+                            <p>• FAA Private Pilot License</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Project Modal -->
+        <div class="project-modal" id="projectModal">
+            <div class="modal-content">
+                <button class="modal-close" id="modalClose">
+                    <i class="fas fa-times"></i>
+                </button>
+                <img id="modalMainImg" src="" alt="Project Image" class="modal-img">
+                <div class="modal-body">
+                    <h2 id="modalTitle"></h2>
+                    <p id="modalDescription"></p>
+                    
+                    <div class="modal-gallery" id="modalGallery">
+                        <!-- Additional project images will be added here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="logo">
+                    <i class="fas fa-rocket logo-icon"></i>
+                    <div class="logo-text">Aero<span>Portfolio</span></div>
+                </div>
+                
+                <div class="footer-links">
+                    <a href="#intro">Intro</a>
+                    <a href="#about">About</a>
+                    <a href="#projects">Projects</a>
+                    <a href="#experience">Experience</a>
+                    <a href="#resume">Resume</a>
+                </div>
+                
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                    <a href="#"><i class="fab fa-researchgate"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 John Carter - Aerospace Engineer. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to top button -->
+    <a href="#intro" class="back-to-top" id="backToTop">
+        <i class="fas fa-chevron-up"></i>
+    </a>
+
+    <script>
+        // Sample projects data
+        const projects = [
+            {
+                id: 1,
+                title: "Hypersonic Vehicle Design",
+                description: "Led the aerodynamic design of a next-generation hypersonic vehicle capable of Mach 8 flight. The project involved extensive CFD simulations and wind tunnel testing to optimize lift-to-drag ratio and thermal management.",
+                longDescription: "This project involved designing a hypersonic vehicle capable of sustained flight at Mach 8. My role included leading a team of engineers in conducting CFD simulations to analyze aerodynamic heating and shockwave interactions. We developed a novel thermal protection system using advanced ceramic composites that reduced weight by 15% compared to traditional designs. The project culminated in a successful scale model wind tunnel test at the NASA Ames Research Center.",
+                image: "https://images.unsplash.com/photo-1541188495357-ad2dc89487b8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                tags: ["Aerodynamics", "CFD", "Thermal Analysis"],
+                gallery: [
+                    "https://images.unsplash.com/photo-1541188495357-ad2dc89487b8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                    "https://images.unsplash.com/photo-1517976547720-1f55615b4c50?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                    "https://images.unsplash.com/photo-1518709268805-4e9042af2176?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                ]
+            },
+            {
+                id: 2,
+                title: "Electric Propulsion System",
+                description: "Designed and tested an ion propulsion system for small satellites. Achieved 20% higher specific impulse compared to current commercial systems.",
+                longDescription: "I led the development of an advanced ion propulsion system for CubeSats and small satellites. The system uses a novel grid design that improves ion extraction efficiency, resulting in a 20% increase in specific impulse. We conducted extensive vacuum chamber testing to validate performance metrics and durability. The propulsion system is now being commercialized for use in upcoming small satellite constellations.",
+                image: "https://images.unsplash.com/photo-1446776653964-20c1d3a81b06?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                tags: ["Propulsion", "Spacecraft", "Ion Thrusters"],
+                gallery: [
+                    "https://images.unsplash.com/photo-1446776653964-20c1d3a81b06?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                    "https://images.unsplash.com/photo-1462331940025-496dfbfc7564?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                    "https://images.unsplash.com/photo-1502134249126-9f3755a50d78?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                ]
+            },
+            {
+                id: 3,
+                title: "Composite Wing Structure",
+                description: "Developed a lightweight composite wing structure for regional aircraft, reducing weight by 18% while maintaining structural integrity.",
+                longDescription: "This project focused on designing and testing a carbon fiber composite wing structure for a next-generation regional aircraft. I led the structural analysis team, using finite element analysis to optimize layup patterns and joint designs. We conducted extensive static and fatigue testing, validating a 18% weight reduction compared to aluminum designs while exceeding all safety requirements. The design is now being incorporated into the aircraft's certification process.",
+                image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                tags: ["Structures", "Composites", "FEA"],
+                gallery: [
+                    "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                    "https://images.unsplash.com/photo-1502134249126-9f3755a50d78?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                    "https://images.unsplash.com/photo-1534237710431-e2fc698436d0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                ]
+            },
+            {
+                id: 4,
+                title: "Mars Ascent Vehicle Propulsion",
+                description: "Contributed to the propulsion system design for a Mars sample return mission, solving unique challenges of Martian atmosphere and gravity.",
+                longDescription: "As part of NASA's Mars Sample Return mission, I worked on the propulsion system for the Mars Ascent Vehicle (MAV). This vehicle must launch samples from the Martian surface to orbit in Mars' thin atmosphere and low gravity. My contributions included optimizing the nozzle design for Martian atmospheric conditions and developing a novel propellant management system that operates reliably in extreme temperature variations. The system underwent successful testing in simulated Martian conditions.",
+                image: "https://images.unsplash.com/photo-1446776653964-20c1d3a81b06?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                tags: ["Propulsion", "Mars", "NASA"],
+                gallery: [
+                    "https://images.unsplash.com/photo-1446776653964-20c1d3a81b06?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                    "https://images.unsplash.com/photo-1462331940025-496dfbfc7564?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                    "https://images.unsplash.com/photo-1502134249126-9f3755a50d78?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                ]
+            },
+            {
+                id: 5,
+                title: "Aircraft Noise Reduction",
+                description: "Developed and tested novel wingtip devices that reduced aircraft noise by 3.5 dB during approach, contributing to community noise reduction goals.",
+                longDescription: "This research project focused on developing innovative wingtip devices to reduce aircraft noise during approach and landing phases. I led a team that designed, 3D-printed, and wind-tunnel tested various configurations. Our most successful design reduced overall noise by 3.5 dB, primarily by modifying vortex shedding patterns. The research was published in the Journal of Aircraft and has informed next-generation quiet aircraft designs.",
+                image: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                tags: ["Aerodynamics", "Noise Reduction", "Testing"],
+                gallery: [
+                    "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                    "https://images.unsplash.com/photo-1518709268805-4e9042af2176?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                    "https://images.unsplash.com/photo-1534237710431-e2fc698436d0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                ]
+            },
+            {
+                id: 6,
+                title: "Autonomous UAV Swarm",
+                description: "Led the development of coordination algorithms for autonomous UAV swarms for atmospheric data collection, improving coverage efficiency by 40%.",
+                longDescription: "This project involved developing autonomous coordination algorithms for a swarm of UAVs used for atmospheric data collection. My role included designing the flight control algorithms that enabled efficient area coverage while avoiding collisions and maintaining communication links. We field-tested the system with a swarm of 10 UAVs, demonstrating a 40% improvement in data collection efficiency compared to single UAV operations. The system has applications in weather monitoring and environmental research.",
+                image: "https://images.unsplash.com/photo-1473968512647-3e447244af8f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                tags: ["UAV", "Autonomy", "Algorithms"],
+                gallery: [
+                    "https://images.unsplash.com/photo-1473968512647-3e447244af8f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                    "https://images.unsplash.com/photo-1534237710431-e2fc698436d0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                    "https://images.unsplash.com/photo-1502134249126-9f3755a50d78?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                ]
+            }
+        ];
+
+        // DOM Elements
+        const navLinks = document.querySelectorAll('.nav-link');
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const projectsGrid = document.getElementById('projectsGrid');
+        const projectModal = document.getElementById('projectModal');
+        const modalClose = document.getElementById('modalClose');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalDescription = document.getElementById('modalDescription');
+        const modalMainImg = document.getElementById('modalMainImg');
+        const modalGallery = document.getElementById('modalGallery');
+        const contactBtn = document.getElementById('contactBtn');
+        const downloadResumeBtn = document.getElementById('downloadResume');
+        const backToTop = document.getElementById('backToTop');
+        const header = document.getElementById('header');
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load projects into the grid
+            loadProjects();
+            
+            // Set up event listeners
+            setupEventListeners();
+            
+            // Set up scroll listener for active nav links
+            setupScrollSpy();
+        });
+
+        // Function to load projects into the grid
+        function loadProjects() {
+            projectsGrid.innerHTML = '';
+            
+            projects.forEach(project => {
+                const projectCard = document.createElement('div');
+                projectCard.className = 'project-card';
+                projectCard.setAttribute('data-project-id', project.id);
+                
+                projectCard.innerHTML = `
+                    <img src="${project.image}" alt="${project.title}" class="project-img">
+                    <div class="project-info">
+                        <h3>${project.title}</h3>
+                        <p>${project.description}</p>
+                        <div class="project-tags">
+                            ${project.tags.map(tag => `<span class="project-tag">${tag}</span>`).join('')}
+                        </div>
+                    </div>
+                `;
+                
+                projectsGrid.appendChild(projectCard);
+            });
+        }
+
+        // Function to set up all event listeners
+        function setupEventListeners() {
+            // Smooth scroll for navigation links
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetSection = document.querySelector(targetId);
+                    
+                    if (targetSection) {
+                        // Close mobile menu if open
+                        mobileMenu.classList.remove('active');
+                        
+                        // Smooth scroll to section
+                        window.scrollTo({
+                            top: targetSection.offsetTop - 70,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // Mobile menu button
+            mobileMenuBtn.addEventListener('click', function() {
+                mobileMenu.classList.toggle('active');
+            });
+            
+            // Project cards
+            document.addEventListener('click', function(e) {
+                const projectCard = e.target.closest('.project-card');
+                if (projectCard) {
+                    const projectId = parseInt(projectCard.getAttribute('data-project-id'));
+                    const project = projects.find(p => p.id === projectId);
+                    if (project) {
+                        openProjectModal(project);
+                    }
+                }
+            });
+            
+            // Modal close button
+            modalClose.addEventListener('click', function() {
+                projectModal.classList.remove('active');
+            });
+            
+            // Close modal when clicking outside
+            projectModal.addEventListener('click', function(e) {
+                if (e.target === projectModal) {
+                    projectModal.classList.remove('active');
+                }
+            });
+            
+            // Contact button
+            contactBtn.addEventListener('click', function() {
+                const resumeSection = document.getElementById('resume');
+                window.scrollTo({
+                    top: resumeSection.offsetTop - 70,
+                    behavior: 'smooth'
+                });
+            });
+            
+            // Download resume button
+            downloadResumeBtn.addEventListener('click', function() {
+                alert('Resume download would start now. In a real implementation, this would download a PDF file.');
+            });
+            
+            // Back to top button
+            window.addEventListener('scroll', function() {
+                if (window.pageYOffset > 300) {
+                    backToTop.classList.add('visible');
+                    header.classList.add('scrolled');
+                } else {
+                    backToTop.classList.remove('visible');
+                    header.classList.remove('scrolled');
+                }
+            });
+            
+            // Mobile menu links
+            const mobileLinks = document.querySelectorAll('.mobile-menu a');
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetSection = document.querySelector(targetId);
+                    
+                    if (targetSection) {
+                        // Close mobile menu
+                        mobileMenu.classList.remove('active');
+                        
+                        // Smooth scroll to section
+                        window.scrollTo({
+                            top: targetSection.offsetTop - 70,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        }
+
+        // Function to set up scroll spy for active nav links
+        function setupScrollSpy() {
+            const sections = document.querySelectorAll('section[id]');
+            
+            window.addEventListener('scroll', function() {
+                let current = '';
+                const scrollPosition = window.pageYOffset + 100;
+                
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    
+                    if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                        current = section.getAttribute('id');
+                    }
+                });
+                
+                // Update active class on nav links
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${current}`) {
+                        link.classList.add('active');
+                    }
+                });
+                
+                // Update active class on mobile menu links
+                const mobileLinks = document.querySelectorAll('.mobile-menu a');
+                mobileLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${current}`) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+        }
+
+        // Function to open project modal
+        function openProjectModal(project) {
+            modalTitle.textContent = project.title;
+            modalDescription.textContent = project.longDescription;
+            modalMainImg.src = project.image;
+            modalMainImg.alt = project.title;
+            
+            // Load gallery images
+            modalGallery.innerHTML = '';
+            project.gallery.forEach(imgSrc => {
+                const galleryImg = document.createElement('img');
+                galleryImg.src = imgSrc;
+                galleryImg.alt = `${project.title} gallery image`;
+                galleryImg.addEventListener('click', function() {
+                    modalMainImg.src = imgSrc;
+                });
+                modalGallery.appendChild(galleryImg);
+            });
+            
+            // Show modal
+            projectModal.classList.add('active');
+        }
+    </script>
 </body>
 </html>
