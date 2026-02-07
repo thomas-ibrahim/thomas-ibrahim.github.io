@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aerospace Engineer Portfolio | John Carter</title>
+    <title>Portfolio | Thomas Ibrahim</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -87,13 +87,14 @@
             color: var(--accent);
         }
 
-        nav ul {
+        /* Desktop Navigation */
+        .desktop-nav ul {
             display: flex;
             list-style: none;
             gap: 30px;
         }
 
-        nav a {
+        .desktop-nav a {
             text-decoration: none;
             color: var(--dark);
             font-weight: 600;
@@ -103,15 +104,15 @@
             position: relative;
         }
 
-        nav a:hover {
+        .desktop-nav a:hover {
             color: var(--accent);
         }
 
-        nav a.active {
+        .desktop-nav a.active {
             color: var(--primary);
         }
 
-        nav a.active:after {
+        .desktop-nav a.active:after {
             content: '';
             position: absolute;
             bottom: -5px;
@@ -122,6 +123,7 @@
             border-radius: 3px;
         }
 
+        /* Mobile Menu Button - Hidden on Desktop */
         .mobile-menu-btn {
             display: none;
             background: none;
@@ -129,6 +131,7 @@
             font-size: 24px;
             color: var(--primary);
             cursor: pointer;
+            z-index: 1002;
         }
 
         /* Main Content - All sections on one page */
@@ -283,6 +286,8 @@
         }
 
         .education-item {
+             position: relative; /* This allows the logo to be positioned absolutely */
+    padding-top: 70px; /* Add space at top for the logo */
             background-color: white;
             padding: 25px;
             border-radius: 10px;
@@ -290,7 +295,39 @@
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
             transition: var(--transition);
         }
+        .education-logo {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    transition: var(--transition);
+}
 
+.education-logo:hover {
+    transform: scale(1.1);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.education-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: grayscale(30%);
+    transition: var(--transition);
+}
+
+
+.education-logo:hover img {
+    filter: grayscale(0%);
+}
         .education-item:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
@@ -732,35 +769,74 @@
         }
 
         @media (max-width: 768px) {
-            nav ul {
+            /* Hide desktop nav on mobile */
+            .desktop-nav {
                 display: none;
             }
-
+            
+            /* Show mobile menu button on mobile */
             .mobile-menu-btn {
                 display: block;
             }
-
+            
+            /* Mobile menu styles */
             .mobile-menu {
                 display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
+                position: fixed;
+                top: 0;
+                right: 0;
+                width: 280px;
+                height: 100vh;
                 background-color: white;
-                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-                padding: 20px;
+                box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+                padding: 80px 30px 30px;
                 flex-direction: column;
-                gap: 15px;
+                gap: 20px;
                 z-index: 1001;
+                overflow-y: auto;
+                transform: translateX(100%);
+                transition: transform 0.3s ease;
             }
-
+            
             .mobile-menu.active {
                 display: flex;
+                transform: translateX(0);
             }
-
+            
             .mobile-menu a {
-                padding: 10px 0;
+                text-decoration: none;
+                color: var(--dark);
+                font-weight: 600;
+                font-size: 18px;
+                padding: 12px 0;
                 border-bottom: 1px solid var(--light-gray);
+                transition: var(--transition);
+            }
+            
+            .mobile-menu a:hover {
+                color: var(--accent);
+                padding-left: 10px;
+            }
+            
+            .mobile-menu a.active {
+                color: var(--primary);
+                border-left: 3px solid var(--accent);
+                padding-left: 10px;
+            }
+            
+            .mobile-menu-overlay {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.5);
+                z-index: 1000;
+            }
+            
+            .mobile-menu-overlay.active {
+                display: block;
             }
 
             .timeline:before {
@@ -823,36 +899,41 @@
 </head>
 <body>
     <!-- Header -->
-    <header id="header">
-        <div class="container header-container">
-            <div class="logo">
-                <i class="fas fa-rocket logo-icon"></i>
-                <div class="logo-text">Aero<span>Portfolio</span></div>
-            </div>
-            
-            <button class="mobile-menu-btn" id="mobileMenuBtn">
-                <i class="fas fa-bars"></i>
-            </button>
-            
-            <nav>
-                <ul>
-                    <li><a href="#intro" class="nav-link active">Intro</a></li>
-                    <li><a href="#about" class="nav-link">About</a></li>
-                    <li><a href="#projects" class="nav-link">Projects</a></li>
-                    <li><a href="#experience" class="nav-link">Experience</a></li>
-                    <li><a href="#resume" class="nav-link">Resume</a></li>
-                </ul>
-            </nav>
-            
-            <div class="mobile-menu" id="mobileMenu">
-                <a href="#intro" class="nav-link active">Intro</a>
-                <a href="#about" class="nav-link">About</a>
-                <a href="#projects" class="nav-link">Projects</a>
-                <a href="#experience" class="nav-link">Experience</a>
-                <a href="#resume" class="nav-link">Resume</a>
-            </div>
+<header id="header">
+    <div class="container header-container">
+        <div class="logo">
+            <div class="logo-text">Thomas Ibrahim <span>Portfolio</span></div>
         </div>
-    </header>
+        
+        <!-- Desktop Navigation - Middle -->
+        <nav class="desktop-nav">
+            <ul>
+                <li><a href="#intro" class="nav-link active">Intro</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#experience" class="nav-link">Experience</a></li>
+                <li><a href="#resume" class="nav-link">Resume</a></li>
+            </ul>
+        </nav>
+        
+        <!-- Mobile Menu Button - Top Right (Only shows on mobile) -->
+        <button class="mobile-menu-btn" id="mobileMenuBtn">
+            <i class="fas fa-bars"></i>
+        </button>
+    </div>
+</header>
+    
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+    
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#intro" class="nav-link active">Intro</a>
+        <a href="#about" class="nav-link">About</a>
+        <a href="#projects" class="nav-link">Projects</a>
+        <a href="#experience" class="nav-link">Experience</a>
+        <a href="#resume" class="nav-link">Resume</a>
+    </div>
 
     <!-- Main Content - All on one page -->
     <main>
@@ -861,8 +942,8 @@
             <div class="container">
                 <div class="intro-content">
                     <div class="intro-text">
-                        <h1>John Carter<br><span>Aerospace Engineer</span></h1>
-                        <p>Specializing in aerodynamics, propulsion systems, and spacecraft design. With over 8 years of experience in the aerospace industry, I combine technical expertise with innovative problem-solving to advance the future of flight and space exploration.</p>
+                        <h1>Thomas Ibrahim<br><span>Aerospace Engineer Student</span></h1>
+                        <p>Undergraduate Aerospace Engineering student at UC Irvine with a strong interest in design and propulsion. Experienced in hands-on engineering projects involving iterative design, testing, and analysis, with a focus on translating theory into real-world systems. </p>
                         <div class="intro-buttons">
                             <button class="download-btn" id="contactBtn">Contact Me</button>
                             <a href="#projects" class="download-btn" style="background-color: var(--primary); margin-left: 15px;">
@@ -871,7 +952,7 @@
                         </div>
                     </div>
                     <div class="intro-photo">
-                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="John Carter - Aerospace Engineer" class="profile-photo">
+                        <img src="profilejpg.jpg" alt="John Carter - Aerospace Engineer" class="profile-photo">
                     </div>
                 </div>
             </div>
@@ -887,35 +968,50 @@
                 
                 <div class="about-content">
                     <div class="about-text">
-                        <p>I'm a passionate Aerospace Engineer with a Master's degree in Aeronautics and Astronautics from Stanford University. My career has been focused on advancing aerospace technology through innovative design and rigorous analysis.</p>
-                        <p>I've worked on a variety of projects ranging from commercial aircraft efficiency improvements to cutting-edge spacecraft propulsion systems. My approach combines traditional engineering principles with modern computational methods.</p>
-                        <p>When I'm not designing the next generation of aerospace technology, I enjoy mentoring young engineers, writing technical papers, and flying drones to capture unique aerial perspectives.</p>
+                        <p>
+I am a passionate Aerospace Engineering student pursuing a Bachelor’s degree at the University of California, Irvine. After graduating high school at the age of 15, I developed a strong sense of discipline and perseverance that continues to drive my pursuit of a career in the aerospace industry.
+</p>
+
+<p>
+I have worked on a wide range of engineering projects involving data collection and analysis, system design, and hands-on assembly. In addition to personal projects, I currently serve as a subteam lead for two design teams at UCI, where I continue to grow as both an engineer and a leader.
+</p>
+
+<p>
+Outside of coursework and engineering projects, I tutor high school students in physics and mathematics. I enjoy mentoring students and encouraging them to challenge themselves academically, including pursuing early graduation to gain a head start in their careers, as I did. I also launch High-Powered Model Rockets with the National Association of Rocketry (NAR) and am Level 1 NAR Certified.
+</p>
+
                         
                         <div class="skills-list">
-                            <div class="skill-tag">Aerodynamics</div>
-                            <div class="skill-tag">CFD Analysis</div>
-                            <div class="skill-tag">Propulsion Systems</div>
-                            <div class="skill-tag">Structural Analysis</div>
+                            <div class="skill-tag">ANSYS (FEA)</div>
+                            <div class="skill-tag">Solidworks</div>
                             <div class="skill-tag">MATLAB/Simulink</div>
-                            <div class="skill-tag">CAD Design</div>
-                            <div class="skill-tag">Systems Engineering</div>
-                            <div class="skill-tag">Project Management</div>
+                            <div class="skill-tag">Arduino IDE</div>
+                            <div class="skill-tag">C++</div>
+                            <div class="skill-tag">Python</div>
+                            <div class="skill-tag">Orbital Mechanics</div>
+                            <div class="skill-tag">Thermal Analysis</div>
                         </div>
                     </div>
                     
                     <div class="education">
                         <div class="education-item">
-                            <h3>Stanford University</h3>
-                            <p class="education-degree">M.S. Aeronautics and Astronautics</p>
-                            <p class="education-years">2013 - 2015</p>
-                            <p>Focus on advanced propulsion systems and computational fluid dynamics.</p>
+                             <div class="education-logo">
+                        <img src="profilejpg.jpg" alt="Stanford University Logo">
+                    </div>
+                            <h3>University of California, Irvine</h3>
+                            <p class="education-degree">B.S. Aerospace Engineering</p>
+                            <p class="education-years">2025 - 2027</p>
+                            <p>3.7 GPA</p>
                         </div>
                         
                         <div class="education-item">
-                            <h3>MIT</h3>
-                            <p class="education-degree">B.S. Aerospace Engineering</p>
-                            <p class="education-years">2009 - 2013</p>
-                            <p>Graduated magna cum laude with focus on aircraft design and structures.</p>
+                            <div class="education-logo">
+                        <img src="profilejpg.jpg" alt="Stanford University Logo">
+                    </div>
+                            <h3>Mt. San Antonio College</h3>
+                            <p class="education-degree">Transfer Aerospace Engineering</p>
+                            <p class="education-years">2023 - 2025</p>
+                            <p>3.87 GPA</p>
                         </div>
                     </div>
                 </div>
@@ -1086,35 +1182,34 @@
     </main>
 
     <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="logo">
-                    <i class="fas fa-rocket logo-icon"></i>
-                    <div class="logo-text">Aero<span>Portfolio</span></div>
-                </div>
-                
-                <div class="footer-links">
-                    <a href="#intro">Intro</a>
-                    <a href="#about">About</a>
-                    <a href="#projects">Projects</a>
-                    <a href="#experience">Experience</a>
-                    <a href="#resume">Resume</a>
-                </div>
-                
-                <div class="social-icons">
-                    <a href="#"><i class="fab fa-linkedin"></i></a>
-                    <a href="#"><i class="fab fa-github"></i></a>
-                    <a href="#"><i class="fab fa-researchgate"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                </div>
+<footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="logo">
+                <div class="logo-text">Thomas Ibrahim <span>Portfolio</span></div>
             </div>
             
-            <div class="copyright">
-                <p>&copy; 2023 John Carter - Aerospace Engineer. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="#intro">Intro</a>
+                <a href="#about">About</a>
+                <a href="#projects">Projects</a>
+                <a href="#experience">Experience</a>
+                <a href="#resume">Resume</a>
+            </div>
+            
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+                <a href="#"><i class="fab fa-github"></i></a>
+                <a href="#"><i class="fab fa-researchgate"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
             </div>
         </div>
-    </footer>
+        
+        <div class="copyright">
+            <p>&copy; 2026 Thomas Ibrahim. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
 
     <!-- Back to top button -->
     <a href="#intro" class="back-to-top" id="backToTop">
@@ -1126,21 +1221,22 @@
         const projects = [
             {
                 id: 1,
-                title: "Hypersonic Vehicle Design",
-                description: "Led the aerodynamic design of a next-generation hypersonic vehicle capable of Mach 8 flight. The project involved extensive CFD simulations and wind tunnel testing to optimize lift-to-drag ratio and thermal management.",
-                longDescription: "This project involved designing a hypersonic vehicle capable of sustained flight at Mach 8. My role included leading a team of engineers in conducting CFD simulations to analyze aerodynamic heating and shockwave interactions. We developed a novel thermal protection system using advanced ceramic composites that reduced weight by 15% compared to traditional designs. The project culminated in a successful scale model wind tunnel test at the NASA Ames Research Center.",
-                image: "https://images.unsplash.com/photo-1541188495357-ad2dc89487b8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-                tags: ["Aerodynamics", "CFD", "Thermal Analysis"],
+                title: "X-Wing Variable-Geometry Drone",
+                description: "Team lead on the design of a variable X-frame quadrotor to quantitatively evaluate aerodynamic and maneuverability benefits at optimized arm angles.",
+                longDescription: "This project originated as part of a Flapping-Wing Micro Air Vehicles research effort and later evolved into a focused side project led by a three-person team. As team lead, I designed the variable-geometry airframe in SolidWorks and programmed the flight controller to actuate servos based on pilot inputs, enabling real-time frame reconfiguration. I also managed project planning through Gantt charts, assigned tasks during weekly subteam meetings, and coordinated integration and testing efforts.",
+                image: "XwingIso.jpg",
+                tags: ["Aerodynamics", "CAD", "Flight Controls", "Research"],
+
                 gallery: [
-                    "https://images.unsplash.com/photo-1541188495357-ad2dc89487b8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-                    "https://images.unsplash.com/photo-1517976547720-1f55615b4c50?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-                    "https://images.unsplash.com/photo-1518709268805-4e9042af2176?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                    "Xwinggif.gif",
+                    "XwingTop.jpg",
+                    "XwingBot.jpg"
                 ]
             },
             {
                 id: 2,
-                title: "Electric Propulsion System",
-                description: "Designed and tested an ion propulsion system for small satellites. Achieved 20% higher specific impulse compared to current commercial systems.",
+                title: "High Speed Drone Payload Design",
+                description: "Designed and fabricated a 3D-printed",
                 longDescription: "I led the development of an advanced ion propulsion system for CubeSats and small satellites. The system uses a novel grid design that improves ion extraction efficiency, resulting in a 20% increase in specific impulse. We conducted extensive vacuum chamber testing to validate performance metrics and durability. The propulsion system is now being commercialized for use in upcoming small satellite constellations.",
                 image: "https://images.unsplash.com/photo-1446776653964-20c1d3a81b06?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
                 tags: ["Propulsion", "Spacecraft", "Ion Thrusters"],
@@ -1208,6 +1304,7 @@
         const navLinks = document.querySelectorAll('.nav-link');
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
         const mobileMenu = document.getElementById('mobileMenu');
+        const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
         const projectsGrid = document.getElementById('projectsGrid');
         const projectModal = document.getElementById('projectModal');
         const modalClose = document.getElementById('modalClose');
@@ -1258,16 +1355,49 @@
 
         // Function to set up all event listeners
         function setupEventListeners() {
-            // Smooth scroll for navigation links
-            navLinks.forEach(link => {
+            // Smooth scroll for desktop navigation links
+            document.querySelectorAll('.desktop-nav a').forEach(link => {
                 link.addEventListener('click', function(e) {
                     e.preventDefault();
                     const targetId = this.getAttribute('href');
                     const targetSection = document.querySelector(targetId);
                     
                     if (targetSection) {
-                        // Close mobile menu if open
+                        // Smooth scroll to section
+                        window.scrollTo({
+                            top: targetSection.offsetTop - 70,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // Mobile menu button click
+            mobileMenuBtn.addEventListener('click', function() {
+                mobileMenu.classList.toggle('active');
+                mobileMenuOverlay.classList.toggle('active');
+                document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : 'auto';
+            });
+            
+            // Mobile menu overlay click
+            mobileMenuOverlay.addEventListener('click', function() {
+                mobileMenu.classList.remove('active');
+                mobileMenuOverlay.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            });
+            
+            // Smooth scroll for mobile menu links
+            document.querySelectorAll('.mobile-menu a').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetSection = document.querySelector(targetId);
+                    
+                    if (targetSection) {
+                        // Close mobile menu
                         mobileMenu.classList.remove('active');
+                        mobileMenuOverlay.classList.remove('active');
+                        document.body.style.overflow = 'auto';
                         
                         // Smooth scroll to section
                         window.scrollTo({
@@ -1278,12 +1408,7 @@
                 });
             });
             
-            // Mobile menu button
-            mobileMenuBtn.addEventListener('click', function() {
-                mobileMenu.classList.toggle('active');
-            });
-            
-            // Project cards
+            // Project cards click
             document.addEventListener('click', function(e) {
                 const projectCard = e.target.closest('.project-card');
                 if (projectCard) {
@@ -1332,19 +1457,14 @@
                 }
             });
             
-            // Mobile menu links
-            const mobileLinks = document.querySelectorAll('.mobile-menu a');
-            mobileLinks.forEach(link => {
+            // Footer links smooth scroll
+            document.querySelectorAll('.footer-links a').forEach(link => {
                 link.addEventListener('click', function(e) {
                     e.preventDefault();
                     const targetId = this.getAttribute('href');
                     const targetSection = document.querySelector(targetId);
                     
                     if (targetSection) {
-                        // Close mobile menu
-                        mobileMenu.classList.remove('active');
-                        
-                        // Smooth scroll to section
                         window.scrollTo({
                             top: targetSection.offsetTop - 70,
                             behavior: 'smooth'
@@ -1371,8 +1491,8 @@
                     }
                 });
                 
-                // Update active class on nav links
-                navLinks.forEach(link => {
+                // Update active class on desktop nav links
+                document.querySelectorAll('.desktop-nav a').forEach(link => {
                     link.classList.remove('active');
                     if (link.getAttribute('href') === `#${current}`) {
                         link.classList.add('active');
@@ -1380,8 +1500,7 @@
                 });
                 
                 // Update active class on mobile menu links
-                const mobileLinks = document.querySelectorAll('.mobile-menu a');
-                mobileLinks.forEach(link => {
+                document.querySelectorAll('.mobile-menu a').forEach(link => {
                     link.classList.remove('active');
                     if (link.getAttribute('href') === `#${current}`) {
                         link.classList.add('active');
