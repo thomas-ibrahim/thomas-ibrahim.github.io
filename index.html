@@ -319,7 +319,7 @@
 .education-logo img {
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    object-fit: cover;
     filter: grayscale(30%);
     transition: var(--transition);
 }
@@ -358,7 +358,7 @@
         .project-img {
             width: 100%;
             height: 200px;
-            object-fit: cover;
+            object-fit: cover; /*project preview image */
         }
 
         .project-info {
@@ -463,7 +463,7 @@
         .modal-img {
             width: 100%;
             height: 400px;
-            object-fit: cover;
+            object-fit: contain; /*The big one when u click on it */
         }
 
         .modal-body {
@@ -491,7 +491,7 @@
         .modal-gallery img {
             width: 100%;
             height: 150px;
-            object-fit: cover;
+            object-fit: cover; /*Image in gallery */
             border-radius: 5px;
             cursor: pointer;
             transition: var(--transition);
@@ -952,7 +952,7 @@
                         </div>
                     </div>
                     <div class="intro-photo">
-                        <img src="profilejpg.jpg" alt="John Carter - Aerospace Engineer" class="profile-photo">
+                        <img src="profile.jpg" alt="John Carter - Aerospace Engineer" class="profile-photo">
                     </div>
                 </div>
             </div>
@@ -1188,23 +1188,40 @@ Outside of coursework and engineering projects, I tutor high school students in 
         const projects = [
             {
                 id: 1,
-                title: "X-Wing Variable-Geometry Drone",
-                description: "Team lead on the design of a variable X-frame quadrotor to quantitatively evaluate aerodynamic and maneuverability benefits at optimized arm angles.",
-                longDescription: "This project originated as part of a Flapping-Wing Micro Air Vehicles research effort and later evolved into a focused side project led by a three-person team. As team lead, I designed the variable-geometry airframe in SolidWorks and programmed the flight controller to actuate servos based on pilot inputs, enabling real-time frame reconfiguration. I also managed project planning through Gantt charts, assigned tasks during weekly subteam meetings, and coordinated integration and testing efforts.",
-                image: "XwingIso.jpg",
+                title: "X-Wing Flapping Variable-Geometry Drone: UCI Research",
+                description: "Team lead on the design of a variable X-frame quadflapper to quantitatively evaluate aerodynamic and maneuverability benefits at optimized arm angles.",
+                longDescription: "X-Wing subteam lead at Flapping-Wing Micro Air Vehicles UCI research design project. Designed a variable X-Wing confiugration to take advantage of optimized arm angles at different altitudes during flight. Tested and experimented with clap angles and gear ratios to produce efficient thrust. Directed team members and supervised assembly and testing of flapping sub assembly. Produced ~100 grams of thrust at 1400 POT per flapping assembly.",
+                image: "xmovegif.gif",
                 tags: ["Aerodynamics", "CAD", "Flight Controls", "Research"],
 
                 gallery: [
-                    "Xwinggif.gif",
-                    "XwingTop.jpg",
-                    "XwingBot.jpg"
+                    "xmovegif.gif",
+                    "Xiso.png",
+                    "Xside.png",
+                    "Subass.png",
+                    "subgif.gif",
+                    "flaptest.gif"
                 ]
             },
             {
                 id: 2,
-                title: "Spacecraft Thermal Management System Emissivity Testing",
-                description: "Research Team at UCI focusing on developing and testing a variable emissivity device (VED) for CubeSAT",
-                longDescription: "Collaborated with three team members to test variable emissivity devices (VEDs) developed by chemical engineering teams, along with an electrochromic display as a potential VED. Using Arduino IDE and MATLAB, I centralized data collection and improved thermal environment consistency, increasing testing accuracy by approximately 30%.",
+                title: "Remote Controlled Hexapod",
+                description: "Developed and tested novel wingtip devices that reduced aircraft noise by 3.5 dB during approach, contributing to community noise reduction goals.",
+                longDescription: "This research project focused on developing innovative wingtip devices to reduce aircraft noise during approach and landing phases. I led a team that designed, 3D-printed, and wind-tunnel tested various configurations. Our most successful design reduced overall noise by 3.5 dB, primarily by modifying vortex shedding patterns. The research was published in the Journal of Aircraft and has informed next-generation quiet aircraft designs.",
+                image: "SpidIso.png",
+                tags: ["Aerodynamics", "Noise Reduction", "Testing"],
+                gallery: [
+                    "SpidIso.png",
+                    "SpidFront.png",
+                    "SpideSide (1).png",
+                    "SpidClose.png"
+                ]
+            },
+            {
+                id: 3,
+                title: "Spacecraft Thermal Management: UCI Research",
+                description: "Collaborated on a multidisciplinary team to evaluate the performance of electrochromic and chemical-based variable emissivity devices for spacecraft thermal management. Developed a centralized data acquisition system using Arduino and MATLAB, optimizing environmental consistency and improving measurement accuracy by 30% through refined thermal stability protocols.",
+                longDescription: "This research project focused on the experimental characterization of Variable Emissivity Devices (VEDs), an advanced thermal management solution designed to regulate spacecraft internal temperatures by dynamically altering surface radiation properties. Working alongside chemical engineers, I was responsible for the development of the testbed architecture and the standardization of data collection protocols. I utilized the Arduino IDE to interface with high-precision thermistors and environmental sensors, routing the raw telemetry into MATLAB for real-time processing and visualization. A significant portion of the work involved mitigating experimental noise caused by fluctuating ambient conditions; by automating the heating and cooling cycles and centralizing the sensor feedback loops, I was able to ensure a highly consistent thermal environment.This systematic approach to data acquisition eliminated manual logging errors and allowed for more precise calculation of the Stefan-Boltzmann relationship as it applied to the active VED surfaces. By implementing these digital filters and hardware-in-the-loop controls, I increased the overall testing accuracy by approximately 30% compared to previous manual iterations. This refined methodology provided the chemical engineering team with the high-fidelity data required to assess the feasibility of electrochromic displays as low-power, active thermal radiators for future small-satellite applications.",
                 image: "EInkCAD.png",
                 tags: ["Thermal Analysis", "Spacecraft", "MATLAB", "Research"],
                 gallery: [
@@ -1213,71 +1230,39 @@ Outside of coursework and engineering projects, I tutor high school students in 
                     "Transmission.png"
                 ]
             },
-            {
-                id: 3,
-                title: "Highspeed Custom DRONE STUF",
-                description: "Developed a lightweight composite wing structure for regional aircraft, reducing weight by 18% while maintaining structural integrity.",
-                longDescription: "This project focused on designing and testing a carbon fiber composite wing structure for a next-generation regional aircraft. I led the structural analysis team, using finite element analysis to optimize layup patterns and joint designs. We conducted extensive static and fatigue testing, validating a 18% weight reduction compared to aluminum designs while exceeding all safety requirements. The design is now being incorporated into the aircraft's certification process.",
-                image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-                tags: ["Structures", "Composites", "FEA"],
-                gallery: [
-                    "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-                    "https://images.unsplash.com/photo-1502134249126-9f3755a50d78?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-                    "https://images.unsplash.com/photo-1534237710431-e2fc698436d0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                ]
-            },
-            {
+             {
                 id: 4,
-                title: "6DOF ARM",
-                description: "Contributed to the propulsion system design for a Mars sample return mission, solving unique challenges of Martian atmosphere and gravity.",
-                longDescription: "As part of NASA's Mars Sample Return mission, I worked on the propulsion system for the Mars Ascent Vehicle (MAV). This vehicle must launch samples from the Martian surface to orbit in Mars' thin atmosphere and low gravity. My contributions included optimizing the nozzle design for Martian atmospheric conditions and developing a novel propellant management system that operates reliably in extreme temperature variations. The system underwent successful testing in simulated Martian conditions.",
-                image: "https://images.unsplash.com/photo-1446776653964-20c1d3a81b06?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-                tags: ["Propulsion", "Mars", "NASA"],
+                title: "Level 1 NAR High Powered Rocket",
+                description: "Designed, simulated, and successfully launched a high-power rocket to earn National Association of Rocketry (NAR) Level 1 Certification. Utilized OpenRocket for iterative aerodynamic modeling, static stability margin verification (CG vs. CP), and flight profile simulation, culminating in a successful recovery and certification in October 2025.",
+                longDescription: "This project focused on the design, structural integration, and flight validation of a high-powered rocket for National Association of Rocketry (NAR) Level 1 Certification. The engineering process began with extensive simulation in OpenRocket, where I performed iterative design cycles to optimize the airframe geometry for aerodynamic stability. A primary focus of the simulation phase was the precise calculation of the Center of Gravity (CG) and Center of Pressure (CP) to maintain a static stability margin of approximately 1.5 to 2.0 calibers. By simulating various motor configurations and wind conditions, I was able to predict apogee altitudes and descent rates, ensuring the recovery system was sized appropriately for the vehicle's kinetic energy upon landing.The fabrication phase required a balance between weight and structural resilience. I utilized resin-reinforced cardboard for the airframe to increase the hoop strength and withstand the higher drag forces associated with high-impulse H and I motors. All critical structural bonds, including the motor mount and fin tabs, were secured with high-strength wood glue and reinforced fillets to manage the thrust loads during the boost phase. The project culminated in a successful flight and recovery in October 2025, where the real-world flight data closely mirrored the OpenRocket predictions, validating the accuracy of the aerodynamic models and my assembly techniques.",
+                image: "rocket0.gif",
+                tags: ["Rocketry", "Rocket Design", "Simulation", "NAR"],
                 gallery: [
-                    "https://images.unsplash.com/photo-1446776653964-20c1d3a81b06?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-                    "https://images.unsplash.com/photo-1462331940025-496dfbfc7564?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-                    "https://images.unsplash.com/photo-1502134249126-9f3755a50d78?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                    "rocket0.gif",
+                    "rocket1.jpeg",
+                    "rocket2.jpeg",
+                    "rocket3.jpeg"
                 ]
             },
             {
                 id: 5,
-                title: "Spider",
-                description: "Developed and tested novel wingtip devices that reduced aircraft noise by 3.5 dB during approach, contributing to community noise reduction goals.",
-                longDescription: "This research project focused on developing innovative wingtip devices to reduce aircraft noise during approach and landing phases. I led a team that designed, 3D-printed, and wind-tunnel tested various configurations. Our most successful design reduced overall noise by 3.5 dB, primarily by modifying vortex shedding patterns. The research was published in the Journal of Aircraft and has informed next-generation quiet aircraft designs.",
-                image: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-                tags: ["Aerodynamics", "Noise Reduction", "Testing"],
+                title: "High-Performance Custom Quadcopter:",
+                description: "Developed a high-speed quadcopter from the ground up, utilizing custom CAD design, additive manufacturing, and precision control theory. Optimized the power-to-weight ratio for high-velocity maneuvers and implemented custom PID tuning to ensure flight stability across a wide range of throttle percentages.",
+                longDescription: "This project served as a comprehensive demonstration of the full engineering lifecycle, focusing on the intersection of structural design, propulsion physics, and control theory. I initiated the process in SolidWorks, where I engineered a custom unibody airframe optimized for high-velocity flight. The design phase required a careful balance between torsional rigidity and weight reduction to ensure the frame could withstand the mechanical stresses of high-G maneuvers without succumbing to resonance. Utilizing additive manufacturing, I selected Carbon Fiber-infused Nylon for the final build, leveraging its superior strength-to-weight ratio and natural vibration-damping properties to shield the flight controller's IMU from motor-generated noise. The most critical technical challenge involved the stabilization of the high-KV propulsion system. Rather than relying on default software configurations, I performed manual PID (Proportional-Integral-Derivative) tuning to achieve a 'locked-in' flight feel. This required a deep dive into the system's feedback loop, where, by analyzing Blackbox flight logs, I identified and filtered out specific vibrational frequencies that caused D-term oscillations, allowing for higher gain settings and sharper tracking. The project culminated in a series of high-speed flight tests that validated the structural integrity of the 3D-printed components and the precision of the control algorithms, resulting in a stable, high-performance platform capable of exceeding 70 MPH with zero mid-flight oscillations.",
+                image: "DroneIso.png",
+                tags: ["Aerodynamics", "PID Tuning", "FEA", "CAD", "Manufacturing", "Physics"],
                 gallery: [
-                    "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-                    "https://images.unsplash.com/photo-1518709268805-4e9042af2176?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-                    "https://images.unsplash.com/photo-1534237710431-e2fc698436d0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                ]
-            },
-            {
-                id: 6,
-                title: "Flapping Wing",
-                description: "Led the development of coordination algorithms for autonomous UAV swarms for atmospheric data collection, improving coverage efficiency by 40%.",
-                longDescription: "This project involved developing autonomous coordination algorithms for a swarm of UAVs used for atmospheric data collection. My role included designing the flight control algorithms that enabled efficient area coverage while avoiding collisions and maintaining communication links. We field-tested the system with a swarm of 10 UAVs, demonstrating a 40% improvement in data collection efficiency compared to single UAV operations. The system has applications in weather monitoring and environmental research.",
-                image: "https://images.unsplash.com/photo-1473968512647-3e447244af8f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-                tags: ["UAV", "Autonomy", "Algorithms"],
-                gallery: [
-                    "https://images.unsplash.com/photo-1473968512647-3e447244af8f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-                    "https://images.unsplash.com/photo-1534237710431-e2fc698436d0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-                    "https://images.unsplash.com/photo-1502134249126-9f3755a50d78?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                ]
-            },
-            {
-                id: 7,
-                title: "ROCKET NAR",
-                description: "Led the development of coordination algorithms for autonomous UAV swarms for atmospheric data collection, improving coverage efficiency by 40%.",
-                longDescription: "This project involved developing autonomous coordination algorithms for a swarm of UAVs used for atmospheric data collection. My role included designing the flight control algorithms that enabled efficient area coverage while avoiding collisions and maintaining communication links. We field-tested the system with a swarm of 10 UAVs, demonstrating a 40% improvement in data collection efficiency compared to single UAV operations. The system has applications in weather monitoring and environmental research.",
-                image: "https://images.unsplash.com/photo-1473968512647-3e447244af8f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-                tags: ["UAV", "Autonomy", "Algorithms"],
-                gallery: [
-                    "https://images.unsplash.com/photo-1473968512647-3e447244af8f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-                    "https://images.unsplash.com/photo-1534237710431-e2fc698436d0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-                    "https://images.unsplash.com/photo-1502134249126-9f3755a50d78?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                    "DroneFly.gif",
+                    "DroneHuman (1).png",
+                    "DroneIso.png",
+                    "DroneFront.png",
+                    "DroneSide.png",
+                    "DroneTop.png"
+                    
                 ]
             }
+            
+           
         ];
 
         // DOM Elements
