@@ -660,6 +660,52 @@
             font-size: 1.6rem;
         }
 
+        /* Experience company logos */
+        .experience-logo {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 220px;
+            height: 150px;
+            background-color: white;
+            border-radius: 10px;
+            border: 1px solid var(--light-gray);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 18px;
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .experience-logo:hover {
+            transform: translateY(-50%) scale(1.05);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .experience-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            filter: grayscale(30%);
+            transition: var(--transition);
+        }
+
+        .experience-logo:hover img {
+            filter: grayscale(0%);
+        }
+
+        /* Odd timeline cards are on the left, so logo goes on the right */
+        .timeline-item:nth-child(odd) .experience-logo {
+            right: 120px;
+        }
+
+        /* Even timeline cards are on the right, so logo goes on the left */
+        .timeline-item:nth-child(even) .experience-logo {
+            left: 120px;
+        }
+
         /* Footer */
         footer {
             background-color: var(--primary);
@@ -953,7 +999,7 @@
                         </div>
                     </div>
                     <div class="intro-photo">
-                        <img src="HeadShotWhite.png" alt="John Carter - Aerospace Engineer" class="profile-photo">
+                        <img src="LinkedInHeadshot.png" alt="John Carter - Aerospace Engineer" class="profile-photo">
                     </div>
                 </div>
             </div>
@@ -1043,30 +1089,53 @@ Outside of coursework and engineering projects, I tutor high school students in 
                 </div>
                 
                 <div class="timeline">
+
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="timeline-date">2026</div>
+                            <h3>GNC Technical Intern</h3>
+                            <h4>Northrop Grumman Space Sector</h4>
+                            <p>Guidance, Navigation, and Control Engineering Intern at Northrop Grumman Space Sector, Launch Vehicle Division, supporting engineering tasks related to missile defence flight systems, dynamics, controls, analysis, and technical documentation. Collaborating with GNC engineers to develop practical experience in aerospace systems, 6DOF simulation-based analysis, and mission-focused engineering workflows.</p>
+                        </div> 
+                        <div class="experience-logo">
+                            <img src="NorthropLogo.png" alt="Northrop Grumman Logo">
+                        </div>
+
+                    </div>
+
                     <div class="timeline-item">
                         <div class="timeline-content">
                             <div class="timeline-date">2025 - Present</div>
-                            <h3>Flapping Wing Micro Air Vehicle: Novel 1</h3>
+                            <h3>Subteam Lead: Flapping Wing Micro Air Vehicle: Novel 1</h3>
                             <h4>UC Irvine</h4>
-                            <p>Led the design and development of the Novel-1 class of micro air vehicles, directing research on wing-generated thrust, in wind-tunnel, and X-wing geometry performance under flapping flight. Designed and fabricated an in-house quad-flapper platform and led a three-member team from concept through testing.</p>
+                            <p>Subteam Led for the design and development of the Novel-1 class of micro air vehicles, directing research on wing-generated thrust, in wind-tunnel, and X-wing geometry performance under flapping flight. Designed and fabricated an in-house quad-flapper platform and led a three-member team from concept through testing.</p>
+                        </div>
+                        <div class="experience-logo">
+                            <img src="FWMAVLogo.png" alt="FWMAV Logo">
                         </div>
                     </div>
                     
                     <div class="timeline-item">
                         <div class="timeline-content">
-                            <div class="timeline-date">2025 - Present</div>
+                            <div class="timeline-date">2025 - 2026</div>
                             <h3>Spacecraft Thermal Management Systems: E-Ink</h3>
                             <h4>UC Irvine</h4>
                             <p>Conducted experimental evaluation of E-Ink–based variable emissivity devices for spacecraft thermal control applications. Led test setup design, data acquisition, and analysis using Arduino and MATLAB to improve measurement repeatability and thermal stability while collaborating with a multidisciplinary team.</p>
+                        </div>
+                        <div class="experience-logo">
+                            <img src="stms3.png" alt="STMS Logo">
                         </div>
                     </div>
                     
                     <div class="timeline-item">
                         <div class="timeline-content">
                             <div class="timeline-date">2025</div>
-                            <h3>Engineering Camp Councelor</h3>
+                            <h3>Engineering Camp Counselor</h3>
                             <h4>UC Irvine, Office of Access and Inclusion</h4>
                             <p>Taught CAD design, fabrication techniques, and Raspberry Pi programming to middle school students while mentoring high school teams developing AI-enabled soccer robots using OpenCV. Guided community college students through Level 1 NAR rocket design, testing, and certification while strengthening leadership and technical instruction skills and promoting STEM engagement.</p>
+                        </div>
+                        <div class="experience-logo">
+                            <img src="inclusion-oai.png" alt="OAI Logo">
                         </div>
                     </div>
                 </div>
@@ -1190,13 +1259,19 @@ Outside of coursework and engineering projects, I tutor high school students in 
             {
                 id: 1,
                 title: "X-Wing Flapping Variable-Geometry Drone: UCI Research",
-                description: "Team lead on the design of a variable X-frame quadflapper to quantitatively evaluate aerodynamic and maneuverability benefits at optimized arm angles.",
+                description: "Team lead on the design of a variable X-frame quadflapper to quantitatively evaluate aerodynamic and maneuverability benefits at optimized arm angles. Won Dean's Choice Award 2025",
                 longDescription: "X-Wing subteam lead at Flapping-Wing Micro Air Vehicles UCI research design project. Designed a variable X-Wing confiugration to take advantage of optimized arm angles at different altitudes during flight. Tested and experimented with clap angles and gear ratios to produce efficient thrust. Directed team members and supervised assembly and testing of flapping sub assembly. Produced ~100 grams of thrust at 1400 POT per flapping assembly.",
-                image: "xmovegif.gif",
+                image: "Novel1Gamma2.gif",
                 tags: ["Aerodynamics", "CAD", "Flight Controls", "Research"],
 
                 gallery: [
-                    "xmovegif.gif",
+                    "Novel1Gamma2.gif",
+                    "Novel1Fly.gif",
+                    "attachments/Novel1IsoIRL.jpeg",
+                    "attachments/Novel1IsoIRL2.jpeg",
+                    "attachments/Novel1Dean1.jpeg",
+                    "attachments/Novel1Dean2.JPG",
+                    "attachments/Novel1Dean3.jpeg",
                     "XIso.png",
                     "Xside.png",
                     "Subass.png",
@@ -1212,6 +1287,7 @@ Outside of coursework and engineering projects, I tutor high school students in 
                 image: "SpidIso.png",
                 tags: ["Inverse Kinematics", "ESP32", "PWM Control","I2C Integration"],
                 gallery: [
+                    "Hexapod2.gif",
                     "SpidIso.png",
                     "SpidFront.png",
                     "SpideSide (1).png",
