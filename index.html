@@ -417,12 +417,25 @@
         .modal-content {
             background-color: white;
             border-radius: 10px;
-            max-width: 900px;
+            max-width: 1150px;
             width: 100%;
-            max-height: 90vh;
-            overflow-y: auto;
+            height: 90vh;
+            overflow: hidden;
             position: relative;
             animation: modalFadeIn 0.4s ease;
+        }
+
+        .modal-details-layout {
+            display: grid;
+            grid-template-columns: minmax(0, 1.5fr) 360px;
+            height: 100%;
+            min-height: 0;
+        }
+
+        .modal-main-column {
+            min-height: 0;
+            overflow-y: auto;
+            background-color: white;
         }
 
         @keyframes modalFadeIn {
@@ -463,12 +476,14 @@
 
         .modal-img {
             width: 100%;
-            height: 400px;
-            object-fit: contain; /*The big one when u click on it */
+            height: 320px;
+            object-fit: contain; /* Main project thumbnail in the details modal */
+            background-color: var(--light);
+            border-bottom: 1px solid var(--light-gray);
         }
 
         .modal-body {
-            padding: 40px;
+            padding: 35px 40px 40px;
         }
 
         .modal-body h2 {
@@ -482,24 +497,152 @@
             font-size: 1.1rem;
         }
 
+        .modal-gallery-panel {
+            background-color: var(--light);
+            border-left: 1px solid var(--light-gray);
+            padding: 28px 22px 70px;
+            min-height: 0;
+            overflow-y: auto;
+        }
+
+        .modal-gallery-panel h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 1.35rem;
+        }
+
+        .modal-gallery-hint {
+            color: var(--gray);
+            font-size: 0.92rem;
+            margin-bottom: 18px;
+        }
+
         .modal-gallery {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            grid-template-columns: 1fr;
             gap: 15px;
-            margin-top: 30px;
         }
 
         .modal-gallery img {
             width: 100%;
-            height: 150px;
-            object-fit: cover; /*Image in gallery */
-            border-radius: 5px;
-            cursor: pointer;
+            height: auto;
+            object-fit: contain;
+            background-color: white;
+            border-radius: 8px;
+            cursor: zoom-in;
             transition: var(--transition);
+            border: 3px solid white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
         }
 
         .modal-gallery img:hover {
-            transform: scale(1.05);
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.14);
+            border-color: var(--accent);
+        }
+
+        /* Fullscreen Project Image Lightbox */
+        .image-lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(13, 59, 102, 0.96);
+            z-index: 3000;
+            justify-content: center;
+            align-items: center;
+            padding: 70px 90px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            backdrop-filter: blur(6px);
+        }
+
+        .image-lightbox.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .lightbox-img {
+            max-width: 100%;
+            max-height: 85vh;
+            object-fit: contain;
+            border-radius: 10px;
+            border: 6px solid white;
+            background-color: white;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+            animation: modalFadeIn 0.3s ease;
+        }
+
+        .lightbox-btn {
+            position: absolute;
+            background-color: white;
+            color: var(--primary);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 22px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: var(--transition);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+        }
+
+        .lightbox-btn:hover {
+            background-color: var(--accent);
+            color: white;
+            transform: scale(1.08);
+        }
+
+        .lightbox-close {
+            top: 25px;
+            right: 30px;
+        }
+
+        .lightbox-close:hover {
+            transform: rotate(90deg) scale(1.08);
+        }
+
+        .lightbox-prev {
+            left: 30px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .lightbox-prev:hover {
+            transform: translateY(-50%) scale(1.08);
+        }
+
+        .lightbox-next {
+            right: 30px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .lightbox-next:hover {
+            transform: translateY(-50%) scale(1.08);
+        }
+
+        .lightbox-counter {
+            position: absolute;
+            bottom: 25px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(255, 255, 255, 0.95);
+            color: var(--primary);
+            padding: 8px 18px;
+            border-radius: 50px;
+            font-weight: 700;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .project-img {
+            cursor: pointer;
+        }
+
+        .modal-img {
+            cursor: default;
         }
 
         /* Experience Section */
@@ -906,12 +1049,55 @@
                 font-size: 2.5rem;
             }
 
+            .modal-details-layout {
+                grid-template-columns: 1fr;
+                max-height: 90vh;
+                overflow-y: auto;
+            }
+
+            .modal-main-column,
+            .modal-gallery-panel {
+                overflow: visible;
+            }
+
+            .modal-gallery-panel {
+                border-left: none;
+                border-top: 1px solid var(--light-gray);
+            }
+
+            .modal-gallery {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
             .modal-body {
                 padding: 20px;
             }
 
             .modal-img {
                 height: 250px;
+            }
+
+            .image-lightbox {
+                padding: 70px 20px;
+            }
+
+            .lightbox-img {
+                max-height: 75vh;
+                border-width: 4px;
+            }
+
+            .lightbox-btn {
+                width: 42px;
+                height: 42px;
+                font-size: 18px;
+            }
+
+            .lightbox-prev {
+                left: 12px;
+            }
+
+            .lightbox-next {
+                right: 12px;
             }
 
             .section {
@@ -922,6 +1108,14 @@
         @media (max-width: 576px) {
             .projects-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .modal-gallery {
+                grid-template-columns: 1fr;
+            }
+
+            .modal-gallery img {
+                height: 160px;
             }
 
             .footer-content {
@@ -1205,16 +1399,39 @@ Outside of coursework and engineering projects, I tutor high school students in 
                 <button class="modal-close" id="modalClose">
                     <i class="fas fa-times"></i>
                 </button>
-                <img id="modalMainImg" src="" alt="Project Image" class="modal-img">
-                <div class="modal-body">
-                    <h2 id="modalTitle"></h2>
-                    <p id="modalDescription"></p>
-                    
-                    <div class="modal-gallery" id="modalGallery">
-                        <!-- Additional project images will be added here -->
+                <div class="modal-details-layout">
+                    <div class="modal-main-column">
+                        <img id="modalMainImg" src="" alt="Project Image" class="modal-img">
+                        <div class="modal-body">
+                            <h2 id="modalTitle"></h2>
+                            <p id="modalDescription"></p>
+                        </div>
                     </div>
+
+                    <aside class="modal-gallery-panel">
+                        <h3>Project Gallery</h3>
+                        <p class="modal-gallery-hint">Click any gallery image to view it full screen.</p>
+                        <div class="modal-gallery" id="modalGallery">
+                            <!-- Additional project images will be added here -->
+                        </div>
+                    </aside>
                 </div>
             </div>
+        </div>
+
+        <!-- Fullscreen Project Image Lightbox -->
+        <div class="image-lightbox" id="imageLightbox" aria-hidden="true">
+            <button class="lightbox-btn lightbox-close" id="lightboxClose" aria-label="Close full screen image">
+                <i class="fas fa-times"></i>
+            </button>
+            <button class="lightbox-btn lightbox-prev" id="lightboxPrev" aria-label="Previous image">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <img id="lightboxImg" src="" alt="Full screen project image" class="lightbox-img">
+            <button class="lightbox-btn lightbox-next" id="lightboxNext" aria-label="Next image">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+            <div class="lightbox-counter" id="lightboxCounter"></div>
         </div>
     </main>
 
@@ -1260,7 +1477,7 @@ Outside of coursework and engineering projects, I tutor high school students in 
                 id: 1,
                 title: "X-Wing Flapping Variable-Geometry Drone: UCI Research",
                 description: "Team lead on the design of a variable X-frame quadflapper to quantitatively evaluate aerodynamic and maneuverability benefits at optimized arm angles. Won Dean's Choice Award 2025",
-                longDescription: "X-Wing subteam lead at Flapping-Wing Micro Air Vehicles UCI research design project. Designed a variable X-Wing confiugration to take advantage of optimized arm angles at different altitudes during flight. Tested and experimented with clap angles and gear ratios to produce efficient thrust. Directed team members and supervised assembly and testing of flapping sub assembly. Produced ~100 grams of thrust at 1400 POT per flapping assembly.",
+                longDescription: "X-Wing subteam lead at Flapping-Wing Micro Air Vehicles UCI research design project. Designed a variable X-Wing confiugration to take advantage of optimized arm angles at different altitudes during flight. Tested and experimented with clap angles and gear ratios to produce efficient thrust. Directed team members and supervised assembly and testing of flapping sub assembly. Produced ~100 grams of thrust at 1400 POT per flapping assembly. Published in UCI EScholar Library website for winning the UCI Engineering Dean's Choice Award.",
                 image: "Novel1Gamma2.gif",
                 tags: ["Aerodynamics", "CAD", "Flight Controls", "Research"],
 
@@ -1354,6 +1571,15 @@ Outside of coursework and engineering projects, I tutor high school students in 
         const modalDescription = document.getElementById('modalDescription');
         const modalMainImg = document.getElementById('modalMainImg');
         const modalGallery = document.getElementById('modalGallery');
+        const imageLightbox = document.getElementById('imageLightbox');
+        const lightboxImg = document.getElementById('lightboxImg');
+        const lightboxClose = document.getElementById('lightboxClose');
+        const lightboxPrev = document.getElementById('lightboxPrev');
+        const lightboxNext = document.getElementById('lightboxNext');
+        const lightboxCounter = document.getElementById('lightboxCounter');
+        let lightboxImages = [];
+        let lightboxIndex = 0;
+        let savedBodyOverflow = '';
         const contactBtn = document.getElementById('contactBtn');
         const downloadResumeBtn = document.getElementById('downloadResume');
         const backToTop = document.getElementById('backToTop');
@@ -1450,7 +1676,7 @@ Outside of coursework and engineering projects, I tutor high school students in 
                 });
             });
             
-            // Project cards click
+            // Project cards click: always open the project details first.
             document.addEventListener('click', function(e) {
                 const projectCard = e.target.closest('.project-card');
                 if (projectCard) {
@@ -1463,14 +1689,39 @@ Outside of coursework and engineering projects, I tutor high school students in 
             });
             
             // Modal close button
-            modalClose.addEventListener('click', function() {
-                projectModal.classList.remove('active');
-            });
+            modalClose.addEventListener('click', closeProjectModal);
             
             // Close modal when clicking outside
             projectModal.addEventListener('click', function(e) {
                 if (e.target === projectModal) {
-                    projectModal.classList.remove('active');
+                    closeProjectModal();
+                }
+            });
+
+            // Fullscreen image lightbox controls
+            lightboxClose.addEventListener('click', closeImageLightbox);
+            lightboxPrev.addEventListener('click', function(e) {
+                e.stopPropagation();
+                showLightboxImage(lightboxIndex - 1);
+            });
+            lightboxNext.addEventListener('click', function(e) {
+                e.stopPropagation();
+                showLightboxImage(lightboxIndex + 1);
+            });
+            imageLightbox.addEventListener('click', function(e) {
+                if (e.target === imageLightbox) {
+                    closeImageLightbox();
+                }
+            });
+            document.addEventListener('keydown', function(e) {
+                if (!imageLightbox.classList.contains('active')) return;
+
+                if (e.key === 'Escape') {
+                    closeImageLightbox();
+                } else if (e.key === 'ArrowLeft') {
+                    showLightboxImage(lightboxIndex - 1);
+                } else if (e.key === 'ArrowRight') {
+                    showLightboxImage(lightboxIndex + 1);
                 }
             });
             
@@ -1484,9 +1735,11 @@ Outside of coursework and engineering projects, I tutor high school students in 
             });
             
             // Download resume button
-            downloadResumeBtn.addEventListener('click', function() {
-                alert('Resume download would start now. In a real implementation, this would download a PDF file.');
-            });
+            if (downloadResumeBtn) {
+                downloadResumeBtn.addEventListener('click', function() {
+                    alert('Resume download would start now. In a real implementation, this would download a PDF file.');
+                });
+            }
             
             // Back to top button
             window.addEventListener('scroll', function() {
@@ -1551,27 +1804,67 @@ Outside of coursework and engineering projects, I tutor high school students in 
             });
         }
 
+        function getProjectImages(project) {
+            return [...new Set([project.image, ...project.gallery])];
+        }
+
+        function closeProjectModal() {
+            projectModal.classList.remove('active');
+            if (!imageLightbox.classList.contains('active')) {
+                document.body.style.overflow = 'auto';
+            }
+        }
+
         // Function to open project modal
         function openProjectModal(project) {
+            const galleryImages = [...new Set(project.gallery.filter(imgSrc => imgSrc !== project.image))];
+
             modalTitle.textContent = project.title;
             modalDescription.textContent = project.longDescription;
             modalMainImg.src = project.image;
             modalMainImg.alt = project.title;
+            modalMainImg.onclick = null;
             
-            // Load gallery images
+            // Load gallery images on the right side. These are the only images that open full screen.
             modalGallery.innerHTML = '';
-            project.gallery.forEach(imgSrc => {
+            galleryImages.forEach((imgSrc, index) => {
                 const galleryImg = document.createElement('img');
                 galleryImg.src = imgSrc;
-                galleryImg.alt = `${project.title} gallery image`;
+                galleryImg.alt = `${project.title} gallery image ${index + 1}`;
                 galleryImg.addEventListener('click', function() {
-                    modalMainImg.src = imgSrc;
+                    openImageLightbox(galleryImages, index, project.title);
                 });
                 modalGallery.appendChild(galleryImg);
             });
             
             // Show modal
             projectModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function openImageLightbox(images, startIndex, altText) {
+            lightboxImages = images;
+            savedBodyOverflow = document.body.style.overflow;
+            imageLightbox.setAttribute('aria-hidden', 'false');
+            lightboxImg.alt = altText || 'Full screen project image';
+            imageLightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            showLightboxImage(startIndex);
+        }
+
+        function closeImageLightbox() {
+            imageLightbox.classList.remove('active');
+            imageLightbox.setAttribute('aria-hidden', 'true');
+            lightboxImg.src = '';
+            document.body.style.overflow = projectModal.classList.contains('active') ? 'hidden' : (savedBodyOverflow || 'auto');
+        }
+
+        function showLightboxImage(index) {
+            if (!lightboxImages.length) return;
+
+            lightboxIndex = (index + lightboxImages.length) % lightboxImages.length;
+            lightboxImg.src = lightboxImages[lightboxIndex];
+            lightboxCounter.textContent = `${lightboxIndex + 1} / ${lightboxImages.length}`;
         }
     </script>
 </body>
